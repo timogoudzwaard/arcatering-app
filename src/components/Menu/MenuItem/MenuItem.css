@@ -1,0 +1,18 @@
+.menu-item {
+  flex: 1;
+  text-align: center;
+
+  transition: 0.1s linear;
+
+  color: #FFF;
+}
+
+.menu-item:hover {
+  border-bottom: 3px solid #F2F2F2;
+  color: #F2F2F2;
+}
+
+.menu-item i {
+  font-size: 35px;
+  line-height: 50px;
+}

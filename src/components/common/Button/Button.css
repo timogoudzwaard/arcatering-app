@@ -9,7 +9,9 @@
 
   color: white;
 
-  background-color: #5132B6
+  background-color: #5132B6;
+
+  text-decoration: none;
 }
 
 .button:hover {

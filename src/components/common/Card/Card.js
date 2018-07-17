@@ -44,7 +44,7 @@ Card.defaultProps = {
   maxHeight: '',
   minHeight: 200,
   maxWidth: 500,
-  backgroundColor: '.white',
+  backgroundColor: 'white',
   lineColor: 'light',
   textColor: 'text-black',
   textAlign: 'left',
