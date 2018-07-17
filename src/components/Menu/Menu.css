@@ -1,0 +1,18 @@
+.menu {
+  background: linear-gradient(to left, #28AB61 , #2dbf6c);
+
+  position: fixed;
+  bottom: 0;
+
+  height: 50px;
+  width: 100%;
+
+  color: white;
+}
+
+@media screen and (min-width: 600px) {
+  .menu {
+    width: 95vw;
+    margin-bottom: 2.5vh;
+  }
+}
