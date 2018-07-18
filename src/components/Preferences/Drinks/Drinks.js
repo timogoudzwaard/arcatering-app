@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Components
-import { Button, Card } from '../../common';
+import { Card } from '../../common';
 import CheckBox from '../CheckBox/CheckBox';
 
 
@@ -53,10 +53,6 @@ class Drinks extends Component {
           checked={yoghurtdrink}
           onChange={this.handleInputChange}
         />
-
-        <Button>
-          Opslaan
-        </Button>
       </Card>
     );
   }
