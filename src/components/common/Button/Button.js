@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = ({ children, url }) => (
-  <Link to={url} className="button">
-    {children}
-  </Link>
+  <div>
+    <Link to={url} className="button">
+      {children}
+    </Link>
+  </div>
 );
 
 Button.propTypes = {

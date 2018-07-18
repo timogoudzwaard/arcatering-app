@@ -1,45 +1,120 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 // Components
 import { Button, Card } from '../common';
+import CheckBox from './CheckBox/CheckBox';
 
 // Style
 import './Food.css';
 
-const Food = () => (
-  <div className="food">
-    <Card cardTitle="Voorkeur voedsel" minHeight={100}>
-      <input type="checkbox" />
-      Bolletjes
+class Food extends Component {
+  constructor(props) {
+    super(props);
 
-      <br />
-      <input type="checkbox" />
-      Smoothie
+    this.state = {
+      bolletjes: false,
+      brinta: false,
+      kipfilet: false,
+      salami: false,
+      kaas: false,
+      melk: false,
+      water: false,
+      yoghurtdrink: false,
+    };
 
-      <br />
-      <Button>
-        Geef door
-      </Button>
-    </Card>
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
 
-    <Card cardTitle="Voorkeur drinken" minHeight={100}>
-      <input type="checkbox" />
-      Melk
+  handleInputChange({ target }) {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name } = target;
 
-      <br />
-      <input type="checkbox" />
-      Bier
+    this.setState({
+      [name]: value,
+    });
+  }
 
-      <br />
-      <input type="checkbox" />
-      Water
+  render() {
+    const {
+      bolletjes,
+      brinta,
+      kipfilet,
+      salami,
+      kaas,
+      melk,
+      water,
+      yoghurtdrink,
+    } = this.state;
+    return (
+      <div className="food">
+        <Card cardTitle="Voorkeur voedsel" minHeight={100}>
 
-      <br />
-      <Button>
-        Geef door
-      </Button>
-    </Card>
-  </div>
-);
+          Basis
+          <hr />
+
+          <CheckBox
+            name="bolletjes"
+            checked={bolletjes}
+            onChange={this.handleInputChange}
+          />
+          <CheckBox
+            name="brinta"
+            checked={brinta}
+            onChange={this.handleInputChange}
+          />
+
+          <br />
+          Beleg
+          <hr />
+
+          <CheckBox
+            name="kipfilet"
+            checked={kipfilet}
+            onChange={this.handleInputChange}
+          />
+          <CheckBox
+            name="salami"
+            checked={salami}
+            onChange={this.handleInputChange}
+          />
+          <CheckBox
+            name="kaas"
+            checked={kaas}
+            onChange={this.handleInputChange}
+          />
+
+          <Button>
+            Opslaan
+          </Button>
+        </Card>
+
+        <Card cardTitle="Voorkeur drinken" minHeight={100}>
+
+          <CheckBox
+            name="melk"
+            checked={melk}
+            onChange={this.handleInputChange}
+          />
+
+          <CheckBox
+            name="water"
+            checked={water}
+            onChange={this.handleInputChange}
+          />
+
+          <CheckBox
+            name="yoghurtdrink"
+            checked={yoghurtdrink}
+            onChange={this.handleInputChange}
+          />
+
+          <Button>
+            Opslaan
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+}
 
 export default Food;
