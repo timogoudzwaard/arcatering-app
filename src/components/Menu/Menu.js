@@ -9,7 +9,7 @@ import './Menu.css';
 const Menu = () => (
   <div className="menu">
     <MenuItem icon="home" url="/" />
-    <MenuItem icon="fastfood" url="/food" />
+    <MenuItem icon="fastfood" url="/preferences" />
   </div>
 );
 
