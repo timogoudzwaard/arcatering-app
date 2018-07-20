@@ -1,0 +1,10 @@
+.authentication input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px 5px;
+  width: 100%;
+}
+
+.authentication button {
+  border: 0;
+}

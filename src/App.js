@@ -5,6 +5,7 @@ import firebase from 'firebase';
 // Components
 import Box from './components/Box/Box';
 import Authentication from './components/Authentication/Authentication';
+import { Spinner } from './components/common';
 
 // Config
 import firebaseConfig from './config';
@@ -30,11 +31,17 @@ class App extends Component {
 
   renderLogin() {
     const { loggedIn } = this.state;
-    if (loggedIn) {
-      return <Box />;
-    }
 
-    return <Authentication />;
+    switch (loggedIn) {
+      case null:
+        return <Spinner />;
+      case true:
+        return <Box />;
+      case false:
+        return <Authentication />;
+      default:
+        return <Spinner />;
+    }
   }
 
   render() {
