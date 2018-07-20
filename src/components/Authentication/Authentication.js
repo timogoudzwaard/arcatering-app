@@ -5,6 +5,8 @@ import firebase from 'firebase';
 
 // Components
 import { Card } from '../common';
+import Register from './Register/Register';
+import Hero from '../Homepage/Hero/Hero';
 
 // Style
 import './Authentication.css';
@@ -23,6 +25,7 @@ class Authentication extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="authentication box">
+        <Hero />
         <Card cardTitle="Log in">
           <form onSubmit={handleSubmit(data => (Authentication.onSubmit(data)))}>
 
@@ -50,12 +53,14 @@ class Authentication extends Component {
 
             <div>
               <button type="submit" className="button">
-                Submit
+                Log in
               </button>
             </div>
 
           </form>
         </Card>
+
+        <Register />
       </div>
     );
   }
