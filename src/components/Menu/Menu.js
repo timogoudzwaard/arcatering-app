@@ -10,6 +10,7 @@ const Menu = () => (
   <div className="menu">
     <MenuItem icon="home" url="/" />
     <MenuItem icon="fastfood" url="/preferences" />
+    <MenuItem icon="settings" url="/settings" />
   </div>
 );
 

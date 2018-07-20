@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Hero from './Hero/Hero';
-import { Card, Button, Spinner } from '../common';
+import { Card, Button } from '../common';
 
 const HomePage = () => (
   <div className="homepage">

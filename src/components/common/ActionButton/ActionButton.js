@@ -1,18 +1,25 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, func } from 'prop-types';
 
-const ActionButton = ({ children }) => (
+// Style
+import './ActionButton.css';
+
+const ActionButton = ({ children, submit }) => (
   <div>
-    <input type="submit" className="button" value={children} />
+    <button type="submit" className="button action-button" value={children} onClick={submit}>
+      {children}
+    </button>
   </div>
 );
 
 ActionButton.propTypes = {
   children: node,
+  submit: func,
 };
 
 ActionButton.defaultProps = {
   children: 'Click me',
+  submit: () => null,
 };
 
 export default ActionButton;
