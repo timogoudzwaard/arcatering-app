@@ -10,27 +10,46 @@ import { Card } from '../../common';
 import './Register.css';
 
 class Authentication extends Component {
-  static onSubmit({ email, password }) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+  constructor(props) {
+    super(props);
+
+    this.state = { error: null };
+    this.renderError = this.renderError.bind(this);
+  }
+
+  onSubmit({ email, password }) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(({ code }) => {
       // Handle Errors here.
-      const { code } = error;
-      const { message } = error;
-      console.log(code, message);
+      console.log(code);
+      this.setState({ error: code });
     });
+  }
+
+  renderError() {
+    const { error } = this.state;
+
+    switch (error) {
+      default:
+        return '';
+      case 'auth/weak-password':
+        return 'Weak password, try a stronger one';
+      case 'auth/email-already-in-use':
+        return 'That email is already in use';
+    }
   }
 
   render() {
     const { handleSubmit } = this.props;
     return (
       <Card cardTitle="Register new account">
-        <form onSubmit={handleSubmit(data => (Authentication.onSubmit(data)))}>
+        <form onSubmit={handleSubmit(data => (this.onSubmit(data)))}>
 
           <div>
             <label htmlFor="email">
               <Field
                 name="email"
                 component="input"
-                type="text"
+                type="email"
                 placeholder="email"
               />
             </label>
@@ -45,6 +64,10 @@ class Authentication extends Component {
                 placeholder="password"
               />
             </label>
+          </div>
+
+          <div className="auth-error">
+            {this.renderError()}
           </div>
 
           <div>

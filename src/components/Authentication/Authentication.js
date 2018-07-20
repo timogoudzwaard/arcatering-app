@@ -12,29 +12,50 @@ import Hero from '../Homepage/Hero/Hero';
 import './Authentication.css';
 
 class Authentication extends Component {
-  static onSubmit({ email, password }) {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+  constructor(props) {
+    super(props);
+
+    this.state = { error: null };
+    this.renderError = this.renderError.bind(this);
+  }
+
+  onSubmit({ email, password }) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(({ code }) => {
       // Handle Errors here.
-      const { code } = error;
-      const { message } = error;
-      console.log(code, message);
+      this.setState({ error: code });
     });
+  }
+
+  renderError() {
+    const { error } = this.state;
+
+    switch (error) {
+      default:
+        return '';
+      case 'auth/invalid-email':
+        return 'invalid email';
+      case 'auth/wrong-password':
+        return 'wrong password';
+      case 'auth/user-not-found':
+        return 'unknown email';
+    }
   }
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
       <div className="authentication box">
         <Hero />
         <Card cardTitle="Log in">
-          <form onSubmit={handleSubmit(data => (Authentication.onSubmit(data)))}>
+          <form onSubmit={handleSubmit(data => (this.onSubmit(data)))}>
 
             <div>
               <label htmlFor="email">
                 <Field
                   name="email"
                   component="input"
-                  type="text"
+                  type="email"
                   placeholder="email"
                 />
               </label>
@@ -49,6 +70,10 @@ class Authentication extends Component {
                   placeholder="password"
                 />
               </label>
+            </div>
+
+            <div className="auth-error">
+              {this.renderError()}
             </div>
 
             <div>
