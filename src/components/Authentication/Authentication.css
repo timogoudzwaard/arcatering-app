@@ -1,6 +1,7 @@
 .authentication input {
   display: block;
-  margin: 10px 0;
+  margin-top: 15px;
+  margin-bottom: 3px;
   padding: 8px 5px;
   width: 100%;
   border: 1px solid #DDD;
@@ -12,4 +13,5 @@
 
 .auth-error {
   color: red;
+  font-size: 14px;
 }

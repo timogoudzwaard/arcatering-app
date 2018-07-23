@@ -6,13 +6,10 @@ import firebase from 'firebase';
 // Components
 import { Card } from '../../common';
 
-// Style
-import './Register.css';
-
 // reduxForm
 import { renderField, required } from '../RenderField/RenderField';
 
-class Authentication extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +18,7 @@ class Authentication extends Component {
   }
 
   onSubmit({ email, password }) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(({ code }) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(({ code }) => {
       // Handle Errors here.
       this.setState({ error: code });
     });
@@ -33,29 +30,32 @@ class Authentication extends Component {
     switch (error) {
       default:
         return '';
-      case 'auth/weak-password':
-        return 'Weak password, try a stronger one';
-      case 'auth/email-already-in-use':
-        return 'That email is already in use';
       case 'auth/invalid-email':
         return 'Invalid email address, please review the information you entered';
+      case 'auth/wrong-password':
+        return 'Incorrect email and password combination';
+      case 'auth/user-not-found':
+        return 'That email address is not registered. Please sign up or enter a different email address';
+      case 'auth/user-disabled':
+        return 'Your account has been disabled.';
     }
   }
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
-      <Card cardTitle="Register new account">
+      <Card cardTitle="Log in">
         <form onSubmit={handleSubmit(data => (this.onSubmit(data)))}>
 
           <div>
             <label htmlFor="email">
               <Field
                 name="email"
-                component={renderField}
-                validate={required}
                 type="email"
                 label="email"
+                component={renderField}
+                validate={required}
               />
             </label>
           </div>
@@ -77,8 +77,8 @@ class Authentication extends Component {
           </div>
 
           <div>
-            <button type="submit" className="button register-button">
-              Register
+            <button type="submit" className="button">
+              Log in
             </button>
           </div>
 
@@ -88,11 +88,11 @@ class Authentication extends Component {
   }
 }
 
-Authentication.propTypes = {
+Login.propTypes = {
   handleSubmit: func.isRequired,
 };
 
 export default reduxForm({
-  form: 'register',
+  form: 'login',
   fields: ['email', 'password'],
-})(Authentication);
+})(Login);
