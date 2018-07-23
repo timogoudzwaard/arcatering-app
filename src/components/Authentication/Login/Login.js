@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import firebase from 'firebase';
 
 // Components
-import { Card } from '../../common';
+import { Card, LoadingIndicator } from '../../common';
 
 // reduxForm
 import { renderField, required } from '../RenderField/RenderField';
@@ -18,10 +18,30 @@ class Login extends Component {
   }
 
   onSubmit({ email, password }) {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(({ code }) => {
-      // Handle Errors here.
-      this.setState({ error: code });
-    });
+    this.setState({ loading: true });
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(({ code }) => {
+        // Handle Errors here.
+        this.setState({ error: code, loading: false });
+      })
+      .then(() => {
+        this.setState({ loading: false });
+      });
+  }
+
+  onLoading() {
+    const { loading } = this.state;
+
+    if (loading) {
+      return <LoadingIndicator />;
+    }
+
+    return (
+      <button type="submit" className="button">
+        Log in
+      </button>
+    );
   }
 
   renderError() {
@@ -76,10 +96,8 @@ class Login extends Component {
             {this.renderError()}
           </div>
 
-          <div>
-            <button type="submit" className="button">
-              Log in
-            </button>
+          <div className="center-button">
+            {this.onLoading()}
           </div>
 
         </form>

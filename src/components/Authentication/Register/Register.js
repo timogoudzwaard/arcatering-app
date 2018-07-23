@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import firebase from 'firebase';
 
 // Components
-import { Card } from '../../common';
+import { Card, LoadingIndicator } from '../../common';
 
 // Style
 import './Register.css';
@@ -12,19 +12,40 @@ import './Register.css';
 // reduxForm
 import { renderField, required } from '../RenderField/RenderField';
 
-class Authentication extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { error: null };
+    this.state = { error: null, loading: false };
+
     this.renderError = this.renderError.bind(this);
   }
 
   onSubmit({ email, password }) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(({ code }) => {
-      // Handle Errors here.
-      this.setState({ error: code });
-    });
+    this.setState({ loading: true });
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(({ code }) => {
+        // Handle Errors here.
+        this.setState({ error: code });
+      })
+      .then(() => {
+        this.setState({ loading: false });
+      });
+  }
+
+  onLoading() {
+    const { loading } = this.state;
+
+    if (loading) {
+      return <LoadingIndicator />;
+    }
+
+    return (
+      <button type="submit" className="button register-button">
+        Register
+      </button>
+    );
   }
 
   renderError() {
@@ -76,10 +97,8 @@ class Authentication extends Component {
             {this.renderError()}
           </div>
 
-          <div>
-            <button type="submit" className="button register-button">
-              Register
-            </button>
+          <div className="center-button">
+            {this.onLoading()}
           </div>
 
         </form>
@@ -88,11 +107,11 @@ class Authentication extends Component {
   }
 }
 
-Authentication.propTypes = {
+Register.propTypes = {
   handleSubmit: func.isRequired,
 };
 
 export default reduxForm({
   form: 'register',
   fields: ['email', 'password'],
-})(Authentication);
+})(Register);

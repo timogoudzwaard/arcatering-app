@@ -15,3 +15,7 @@
   color: red;
   font-size: 14px;
 }
+
+.authentication .center-button {
+  text-align: center;
+}
