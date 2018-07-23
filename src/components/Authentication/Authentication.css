@@ -1,0 +1,21 @@
+.authentication input {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 3px;
+  padding: 8px 5px;
+  width: 100%;
+  border: 1px solid #DDD;
+}
+
+.authentication button {
+  border: 0;
+}
+
+.auth-error {
+  color: red;
+  font-size: 14px;
+}
+
+.authentication .center-button {
+  text-align: center;
+}

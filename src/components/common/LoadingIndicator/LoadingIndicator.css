@@ -1,0 +1,25 @@
+.loading-indicator {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 10px 0;
+}
+.loading-indicator:after {
+  content: " ";
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #5132B6;
+  border-color: #5132B6 transparent #5132B6 transparent;
+  animation: loading-indicator 1.2s linear infinite;
+}
+@keyframes loading-indicator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
