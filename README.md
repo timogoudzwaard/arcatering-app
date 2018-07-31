@@ -8,7 +8,11 @@ The official Arcatering App (PWA)
 - Service Worker for PWA (Progressive Web Application)
 
 ## Firebase config
-Create a new project in firebase, then add the firebase config in src/config.js (create a new file).
+**Before changing anything to the config, use the command:**
+```
+git update-index --skip-worktree src/config.js
+```
+Create a new project in firebase, then change the firebase config in src/config.js.
 
 **Example**
 ```
