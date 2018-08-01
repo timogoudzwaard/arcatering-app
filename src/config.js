@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_KEY,
-  authDomain: process.env.FIREBASE_AUTH,
-  databaseURL: process.env.FIREBASE_DB,
-  projectId: process.env.FIREBASE_PI,
-  storageBucket: process.env.FIREBASE_SB,
-  messagingSenderId: process.env.FIREBASE_MSI,
+  apiKey: 'AIzaSyC8Jxmswz6mHGzq9v1XdCDOnOX-nw39Phk',
+  authDomain: 'arcatering-app.firebaseapp.com',
+  databaseURL: 'https://arcatering-app.firebaseio.com',
+  projectId: 'arcatering-app',
+  storageBucket: 'arcatering-app.appspot.com',
+  messagingSenderId: '865506420474',
 };
 
 export default firebaseConfig;

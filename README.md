@@ -25,7 +25,8 @@ Hosting is going to be easy as well.
 git update-index --skip-worktree src/config.js
 ```
 This command makes sure that if you make any changes to the config file, it won't push them to the repository.
-This prevents leaking of sensitive data (eg:API keys)
+This makes sure that you can use your own firebase config without accidentally changing it in the repository.
+
 Create a new project in firebase, then change the firebase config in src/config.js.
 
 **Example**
@@ -43,11 +44,7 @@ export default firebaseConfig;
 ```
 
 ## Installation
-Make sure you completed the firebase config and that you executed
-```
-git update-index --skip-worktree src/config.js
-```
-To prevent leaking of sensitive data.  
+**Make sure you completed the firebase config first.**
   
 When you completed that, use ``npm install`` to install the modules
 and run ``npm start`` to start the develop server.
