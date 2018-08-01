@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: 'xxxx',
-  authDomain: 'xxxx.firebaseapp.com',
-  databaseURL: 'https://xxxx.firebaseio.com',
-  projectId: 'xxxx',
-  storageBucket: 'xxxx.appspot.com',
-  messagingSenderId: '12341234',
+  apiKey: 'AIzaSyC8Jxmswz6mHGzq9v1XdCDOnOX-nw39Phk',
+  authDomain: 'arcatering-app.firebaseapp.com',
+  databaseURL: 'https://arcatering-app.firebaseio.com',
+  projectId: 'arcatering-app',
+  storageBucket: 'arcatering-app.appspot.com',
+  messagingSenderId: '865506420474',
 };
 
 export default firebaseConfig;
