@@ -1,10 +1,12 @@
+console.log(process.env.FIREBASE_KEY);
+
 const firebaseConfig = {
-  apiKey: 'xxxx',
-  authDomain: 'xxxx.firebaseapp.com',
-  databaseURL: 'https://xxxx.firebaseio.com',
-  projectId: 'xxxx',
-  storageBucket: 'xxxx.appspot.com',
-  messagingSenderId: '12341234',
+  apiKey: process.env.FIREBASE_KEY,
+  authDomain: process.env.FIREBASE_AUTH,
+  databaseURL: process.env.FIREBASE_DB,
+  projectId: process.env.FIREBASE_PI,
+  storageBucket: process.env.FIREBASE_SB,
+  messagingSenderId: process.env.FIREBASE_MSI,
 };
 
 export default firebaseConfig;
