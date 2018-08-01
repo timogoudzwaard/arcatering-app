@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(firebaseConfig);
     firebase.initializeApp(firebaseConfig);
 
     firebase.auth().onAuthStateChanged((user) => {

@@ -1,5 +1,3 @@
-console.log(process.env.FIREBASE_KEY);
-
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_KEY,
   authDomain: process.env.FIREBASE_AUTH,
