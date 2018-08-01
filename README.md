@@ -1,6 +1,10 @@
 # Arcatering-App
 The official Arcatering App (PWA)
 
+This application makes it easy to organise lunches with your team, whether it's for work or a different organisation.
+The idea is that it makes it really easy to register and login to an existing team and opt-in for lunch.
+Hosting is going to be easy as well.
+
 ## This project contains
 - React
 - ESLint (AirBnB config)
