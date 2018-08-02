@@ -59,3 +59,15 @@ Try using this or a similar method:
 - Change back to the passing version of the test and check if it still passes.
 
 To run the tests use ``npm run test``
+
+## Branches
+Create a new branch when picking up a new issue, name it with 'ARA' + the issue number.
+
+**Example**
+ARA-30-add-tests-menu-comp
+
+## Commits
+Start your commits with the issue number.
+
+**Example**
+git commit -m "#30 - add tests for menu component"
