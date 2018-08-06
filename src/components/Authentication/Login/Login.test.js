@@ -47,14 +47,3 @@ describe('redux form with loading set to false', () => {
     expect(wrapped.find(LoadingIndicator).length).toEqual(0);
   });
 });
-
-describe('redux form with loading set to true', () => {
-  beforeEach(() => {
-    wrapped.setState({ loading: true });
-    wrapped.update();
-  });
-
-  it('renders loading indicator', () => {
-    expect(wrapped.find(LoadingIndicator).length).toEqual(1);
-  });
-});
