@@ -6,8 +6,8 @@ import Hero from './Hero/Hero';
 import { Card, Button, ActionButton } from '../common';
 
 class HomePage extends Component {
-  componentDidMount() {
-    let optInText = 'Ik lunch vandaag mee';
+  state = {
+    optInText: 'Ik lunch mee!',
   }
 
   optIn = () => {
@@ -26,7 +26,7 @@ class HomePage extends Component {
     })
       .then(() => {
         console.log('Aangemeld');
-        this.optInText = 'Aangemeld voor lunch! :)';
+        this.setState({ optInText: 'Aangemeld voor lunch! :)' });
       })
       .catch((error) => {
         console.error('Error opting in for lunch: ', error);
@@ -34,12 +34,13 @@ class HomePage extends Component {
   }
 
   render() {
+    const { optInText } = this.state;
     return (
       <div className="homepage">
         <Hero />
         <Card cardTitle="Lunch" textAlign="center" minHeight={100}>
           <ActionButton submit={this.optIn}>
-            {this.optInText}
+            {optInText}
           </ActionButton>
         </Card>
     
