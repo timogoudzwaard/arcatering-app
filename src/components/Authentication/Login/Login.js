@@ -76,6 +76,7 @@ class Login extends Component {
                 label="email"
                 component={renderField}
                 validate={required}
+                className="email-field"
               />
             </label>
           </div>
@@ -88,6 +89,7 @@ class Login extends Component {
                 validate={required}
                 type="password"
                 label="password"
+                className="password-field"
               />
             </label>
           </div>

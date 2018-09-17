@@ -25,6 +25,6 @@ it('renders Hero component', () => {
   expect(wrapped.find(Hero).length).toEqual(1);
 });
 
-it('renders 2 Button components', () => {
-  expect(wrapped.find(Button).length).toEqual(2);
+it('renders 1 Button and 1 Action Button', () => {
+  expect(wrapped.find(Button).length).toEqual(1);
 });
