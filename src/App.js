@@ -18,7 +18,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Initialize firebase
     firebase.initializeApp(firebaseConfig);
+    const firestore = firebase.firestore();
+    const settings = { timestampsInSnapshots: true };
+    firestore.settings(settings);
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user != null) {

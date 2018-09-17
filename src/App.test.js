@@ -1,9 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+
+// Components
 import App from './App';
 
+// Tests
+let wrapped;
+
+beforeEach(() => {
+  wrapped = shallow(<App />);
+});
+
+afterEach(() => {
+  wrapped.unmount();
+});
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  expect(wrapped.length).toEqual(1);
 });
