@@ -7,22 +7,42 @@ import { ActionButton, LoadingIndicator } from '../../common';
 class OptIn extends Component {
   state = {
     optInText: 'Ik lunch mee!',
-    loadingOptIn: false,
+    loadingOptIn: true,
+  }
+
+  componentDidMount() {
+    // Get current date
+    const dateObj = new Date();
+    const currentDate = dateObj.getFullYear() + '-' + (dateObj.getMonth()+1) + '-' + dateObj.getDate();
+    this.setState({ currentDate });
+
+    // Get current user
+    const user = firebase.auth().currentUser;
+    const userEmail = user.email;
+    this.setState({ userEmail });
+
+    const db = firebase.firestore();
+    const docRef = db.collection(currentDate).doc(userEmail);
+
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        this.setState({ optInText: 'Aangemeld voor lunch! :)', loadingOptIn: false });
+        this.renderLoading();
+      } else {
+        this.setState({ loadingOptIn: false });
+        this.renderLoading();
+      }
+    }).catch((error) => {
+      console.log('Error getting OptIn answer:', error);
+    });
   }
 
   optIn = () => {
     this.setState({ loadingOptIn: true });
     const db = firebase.firestore();
 
-    // Get current user
-    const user = firebase.auth().currentUser;
-    const userEmail = user.email;
-
-    // Get date
-    const dateObj = new Date();
-    const date = dateObj.getFullYear() + '-' + (dateObj.getMonth()+1) + '-' + dateObj.getDate();
-
-    db.collection(date).doc(userEmail).set({
+    const { currentDate, userEmail } = this.state;
+    db.collection(currentDate).doc(userEmail).set({
       opted: 'I want food',
     })
       .then(() => {

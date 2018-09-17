@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 // Components
 import Homepage from './Homepage';
 import Hero from './Hero/Hero';
-import { Card, Button, ActionButton } from '../common';
+import { Card, Button } from '../common';
 
 // Tests
 let wrapped;
@@ -27,5 +27,4 @@ it('renders Hero component', () => {
 
 it('renders 1 Button and 1 Action Button', () => {
   expect(wrapped.find(Button).length).toEqual(1);
-  expect(wrapped.find(ActionButton).length).toEqual(1);
 });
