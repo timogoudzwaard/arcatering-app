@@ -3,8 +3,9 @@ import React from 'react';
 // Components
 import Hero from './Hero/Hero';
 import OptIn from './OptIn/OptIn';
-import { Card, Button } from '../common';
+import { Card } from '../common';
 import OptedIn from './OptedIn/OptedIn';
+import Groceries from './Groceries/Groceries';
 
 const HomePage = () => (
   <div className="homepage">
@@ -15,9 +16,7 @@ const HomePage = () => (
     </Card>
 
     <Card cardTitle="Boodschappen" textAlign="center" minHeight={100}>
-      <Button>
-        Ik haal de boodschappen
-      </Button>
+      <Groceries />
     </Card>
   </div>
 );
