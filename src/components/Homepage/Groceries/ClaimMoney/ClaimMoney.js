@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
 import { ActionButton } from '../../../common';
 
 class ClaimMoney extends Component {
   constructor(props) {
     super(props);
-    this.state = { amount: '', IBAN: '' };
+    this.state = { amount: '', IBAN: '', users: 1 };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleAmountChange = this.handleAmountChange.bind(this);
+    this.handleIBANChange = this.handleIBANChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // sendMessage = ({ amount, users, IBAN }) => {
-  //   const amountPerUser = amount / users;
-  // };
+  componentDidMount() {
+    // Get current date
+    const dateObj = new Date();
+    const currentDate = dateObj.getFullYear() + '-' + (dateObj.getMonth()+1) + '-' + dateObj.getDate();
 
-  handleChange(event) {
+    const db = firebase.firestore();
+    db.collection(currentDate).get().then((snap) => {
+      this.setState({ users: snap.size });
+    });
+  }
+
+  handleAmountChange(event) {
     this.setState({ amount: event.target.value });
+  }
+
+  handleIBANChange(event) {
+    this.setState({ IBAN: event.target.value });
+  }
+
+  handleSubmit() { // eslint-disable-line
+    const { amount, users, IBAN } = this.state;
+    const amountPerUser = amount / users;
+    let message = `Wil je ${amountPerUser} overmaken naar ${IBAN}`;
+    message = encodeURI(message);
+    window.location.assign(`https://wa.me/?text=${message}`);
   }
 
   render() {
@@ -24,12 +46,12 @@ class ClaimMoney extends Component {
         <p>
           Hoe duur waren de boodschappen?
         </p>
-        <input type="text" value={amount} onChange={this.handleChange} />
+        <input type="text" value={amount} onChange={this.handleAmountChange} />
         <p>
           Op welke rekening moet het gestort worden?
         </p>
-        <input type="text" value={IBAN} onChange={this.handleChange} />
-        <ActionButton>
+        <input type="text" value={IBAN} onChange={this.handleIBANChange} />
+        <ActionButton submit={this.handleSubmit}>
           Claim geld
         </ActionButton>
       </div>
