@@ -4,6 +4,9 @@ import * as firebase from 'firebase';
 // Components
 import { ActionButton } from '../../../common';
 
+// Style
+import './OptOut.css';
+
 class OptOut extends Component {
   constructor(props) {
     super(props);
@@ -16,18 +19,13 @@ class OptOut extends Component {
     const dateObj = new Date();
     const currentDate = dateObj.getFullYear() + '-' + (dateObj.getMonth()+1) + '-' + dateObj.getDate();
     this.setState({ currentDate });
-
-    // Get current user
-    const user = firebase.auth().currentUser;
-    const userEmail = user.email;
-    this.setState({ userEmail });
   }
 
   optOut() {
     const db = firebase.firestore();
 
-    const { currentDate, userEmail } = this.state;
-    const docRef = db.collection(currentDate).doc(userEmail);
+    const { currentDate } = this.state;
+    const docRef = db.collection('groceries').doc(currentDate);
     docRef.delete().then(() => {
       window.location.reload();
     })
@@ -40,7 +38,7 @@ class OptOut extends Component {
     return (
       <div className="opt-out">
         <ActionButton submit={this.optOut}>
-          Niet mee lunchen
+          Niet boodschappen halen
         </ActionButton>
       </div>
     );

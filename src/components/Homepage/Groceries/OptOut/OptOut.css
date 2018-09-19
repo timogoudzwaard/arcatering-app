@@ -1,0 +1,7 @@
+.opt-out div button {
+  background-color: #e74c3c;
+}
+
+.opt-out div button:hover {
+  background-color: #c0392b;
+}
