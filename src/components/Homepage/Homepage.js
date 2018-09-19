@@ -7,6 +7,9 @@ import { Card } from '../common';
 import OptedIn from './OptedIn/OptedIn';
 import Groceries from './Groceries/Groceries';
 
+// Style
+import './Homepage.css';
+
 const HomePage = () => (
   <div className="homepage">
     <Hero />
