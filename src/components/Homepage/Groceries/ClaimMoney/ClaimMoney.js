@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import { ActionButton } from '../../../common';
+import OptOut from '../OptOut/OptOut';
 
 class ClaimMoney extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class ClaimMoney extends Component {
         <ActionButton submit={this.handleSubmit}>
           Claim geld
         </ActionButton>
+        <OptOut />
       </div>
     );
   }

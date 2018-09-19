@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 
 // Components
 import { ActionButton, LoadingIndicator } from '../../common';
+import OptOut from '../OptedIn/OptOut/OptOut';
 
 class OptIn extends Component {
   state = {
@@ -66,9 +67,12 @@ class OptIn extends Component {
       );
     } if (loadingOptIn === false && optInText !== 'Ik lunch mee!') {
       return (
-        <p>
-          Je lunched mee vandaag
-        </p>
+        <div>
+          <p>
+            Je lunched mee vandaag
+          </p>
+          <OptOut />
+        </div>
       );
     }
     return (
